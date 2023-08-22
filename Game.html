@@ -1,0 +1,59 @@
+<!doctype html>
+
+<body>
+    <canvas id="gameCanvas" width="1900" height="940"></canvas>
+
+    <script>
+        var canvas, canvasContext, imageAssets;
+
+        window.onload = function () {
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+
+            document.body.style.background = 'black';
+            
+
+            setInterval(mainloop, 1000 / 50);
+        }
+
+        var playerXpos = '';
+        var playerYpos = '';
+        var playerXspeed = 100;
+        var playerYspeed = 100;
+        var PLAYER_SIZE = 100;
+        const PLAYER_WIDTH = 100;
+        const PLAYER_HEIGHT = 100;
+
+        const D_KEY = 68;
+        const A_KEY = 65;
+        const SPACE_KEY = 87;
+
+        var gameRun = true;
+
+        var setup = true;
+
+        function mainloop() {
+            if (gameRun) {
+
+                if (setup) {
+                    playerXpos = canvas.width * 0.46;
+                    playerYpos = canvas.height / 2;
+
+                    setup = false;
+                }
+
+                colorRect(0, 0, canvas.width, canvas.height, 'black');
+                colorRect(playerXpos, playerYpos, PLAYER_WIDTH, PLAYER_HEIGHT, 'blue');
+
+            }
+        }
+
+        function colorRect(x, y, w, h, c) { 
+            canvasContext.fillStyle = c;
+            canvasContext.fillRect(x, y, w, h);
+        }
+
+        
+    </script>
+
+</body>
