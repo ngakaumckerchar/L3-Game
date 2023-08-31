@@ -1,15 +1,13 @@
 var canvas = document.getElementById("canvas");
-canvas.width  = window.innerWidth;
-canvas.height = window.innerHeight;
+//https://www.youtube.com/watch?v=P2i11xnrpNI
 window.addEventListener ('mousemove', function (e){ 
-    //https://www.youtube.com/watch?v=P2i11xnrpNI
     console.log(e);
 });
-var canvas, canvasContext, imageAssets;
+var canvasContext, imageAssets;
 
 window.onload = function () {
-    canvas = document.getElementById('gameCanvas');
-    canvasContext = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     document.body.style.background = 'black';
     document.addEventListener('keydown', keyPressed);
@@ -36,12 +34,10 @@ var aKeyPressed = false;
 var wKeyPressed = false;
 var sKeyPressed = false;
 
-var gameRun = true;
 
 var setup = true;
 
 function mainloop() {
-    if (gameRun) {
 
         if (setup) {
             playerXpos = canvas.width * 0.46;
@@ -55,7 +51,6 @@ function mainloop() {
 
         PlayerMove()
     }
-}
 
 function colorRect(x, y, w, h, c) {
     canvasContext.fillStyle = c;
