@@ -1,19 +1,18 @@
-
 window.onload = function () {
     var canvas = document.getElementById("canvas");
     canvasContext = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
+
     document.body.style.background = 'black';
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
     document.addEventListener('click', mouseClick);
-    
+
     setInterval(mainloop, 1000 / 50);
 }
 //https://www.youtube.com/watch?v=P2i11xnrpNI
-window.addEventListener ('mousemove', function (e){ //detects mouse movement
+window.addEventListener('mousemove', function (e) { //detects mouse movement
     // console.log( e ); 
     mouseX = e.x
     mouseY = e.y
@@ -21,6 +20,7 @@ window.addEventListener ('mousemove', function (e){ //detects mouse movement
 });
 var canvasContext, imageAssets;
 
+var bullet = [];
 var bulletWidth = 20;
 var bulletHeight = 20;
 
@@ -50,47 +50,47 @@ function mainloop() {
     if (setup) {
         playerXpos = canvas.width * 0.46;
         playerYpos = canvas.height / 2;
-        
+
         setup = false;
-    }
-    if (mouseClick = true) {
-        
     }
 
     colorRect(0, 0, canvas.width, canvas.height, 'black');
     colorRect(playerXpos, playerYpos, PLAYER_WIDTH, PLAYER_HEIGHT, 'blue');
-        
-        PlayerMove()
+
+    PlayerMove()
+}
+
+function colorRect(x, y, w, h, c) {
+    canvasContext.fillStyle = c;
+    canvasContext.fillRect(x, y, w, h);
+}
+
+function keyPressed(evt) {
+    if (evt.keyCode == D_KEY) {
+        dKeyPressed = true;
     }
-    
-    function colorRect(x, y, w, h, c) {
-        canvasContext.fillStyle = c;
-        canvasContext.fillRect(x, y, w, h);
+    if (evt.keyCode == A_KEY) {
+        aKeyPressed = true;
     }
-    
-    function keyPressed(evt) {
-        if (evt.keyCode == D_KEY) {
-            dKeyPressed = true;
-        }
-        if (evt.keyCode == A_KEY) {
-            aKeyPressed = true;
-        }
     if (evt.keyCode == W_KEY) {
         wKeyPressed = true;
     }
     if (evt.keyCode == S_KEY) {
         sKeyPressed = true;
     }
-    
+
 }
 
-function mouseClick(event){
-    console.log(event);
-    if (mouseClick = true){
-        colorRect(mouseX, mouseY, bulletWidth, bulletHeight, 'green')
+
+function mouseClick(event) {
+    // console.log(event);
+    if (mouseClick = true) {
+        //  colorRect(mouseX, mouseY, bulletWidth, bulletHeight, 'hotpink');
+        colorRect(playerXpos, playerYpos, bulletWidth, bulletHeight, 'hotpink');
+        //make a bullet array here it goes in the direction of mouseX and mouseY
 
     }
-    
+
 }
 
 function keyReleased(evt) {
@@ -127,19 +127,3 @@ function PlayerMove() {
 
 
 }
-
-
-
-
-
-
-
-
-//https://codingbeautydev.com/blog/javascript-get-mouse-position/#google_vignette
-// const mousePosText = document.getElementById('mouse-pos');
-// let mousePos = { x: undefined, y: undefined };
-// var mX;
-// window.addEventListener('mousemove', (event) => {
-//   mousePos = { mX: event.clientX, mY: event.clientY };
-//   console.log(mX)
-// });
