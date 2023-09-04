@@ -1,20 +1,24 @@
-var canvas = document.getElementById("canvas");
-//https://www.youtube.com/watch?v=P2i11xnrpNI
-window.addEventListener ('mousemove', function (e){ 
-    console.log(e);
-});
-var canvasContext, imageAssets;
 
 window.onload = function () {
-    canvas.width  = window.innerWidth;
+    var canvas = document.getElementById("canvas");
+    canvasContext = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
+    
     document.body.style.background = 'black';
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
-
+    
     setInterval(mainloop, 1000 / 50);
 }
+//https://www.youtube.com/watch?v=P2i11xnrpNI
+window.addEventListener ('mousemove', function (e){ //detects mouse movement
+    // console.log( e ); 
+    mouseX = e.x
+    mouseY = e.y
+    console.log(mouseX , mouseY)
+});
+var canvasContext, imageAssets;
 
 var playerXpos = '';
 var playerYpos = '';
