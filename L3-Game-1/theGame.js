@@ -46,17 +46,17 @@ var sKeyPressed = false;
 var setup = true;
 
 function mainloop() {
-
+    
     if (setup) {
         playerXpos = canvas.width * 0.46;
         playerYpos = canvas.height / 2;
-
+        
         setup = false;
     }
-
+    
     colorRect(0, 0, canvas.width, canvas.height, 'black');
     colorRect(playerXpos, playerYpos, PLAYER_WIDTH, PLAYER_HEIGHT, 'blue');
-
+    
     PlayerMove()
 }
 
@@ -78,18 +78,13 @@ function keyPressed(evt) {
     if (evt.keyCode == S_KEY) {
         sKeyPressed = true;
     }
-
 }
 
 
 function mouseClick(event) {
     // console.log(event);
-    if (mouseClick = true) {
-        //  colorRect(mouseX, mouseY, bulletWidth, bulletHeight, 'hotpink');
         colorRect(playerXpos, playerYpos, bulletWidth, bulletHeight, 'hotpink');
         //make a bullet array here it goes in the direction of mouseX and mouseY
-
-    }
 
 }
 
@@ -106,11 +101,9 @@ function keyReleased(evt) {
     if (evt.keyCode == S_KEY) {
         sKeyPressed = false;
     }
-
 }
 
 function PlayerMove() {
-
     if (dKeyPressed && playerXpos < canvas.width * 0.94) {
         playerXpos += playerXspeed;
     }
@@ -123,7 +116,4 @@ function PlayerMove() {
     if (sKeyPressed && playerYpos < canvas.height * 0.89) {
         playerYpos += playerYspeed;
     }
-
-
-
 }
