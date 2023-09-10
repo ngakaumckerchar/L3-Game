@@ -20,9 +20,11 @@ window.addEventListener('mousemove', function (e) { //detects mouse movement
 });
 var canvasContext, imageAssets;
 
-var bullet = [];
+var bulletXpos = 0;
+var bulletYpos = 0;
 var bulletWidth = 20;
 var bulletHeight = 20;
+var bulletSpeed = 5;
 
 var playerXpos = '';
 var playerYpos = '';
@@ -42,22 +44,20 @@ var aKeyPressed = false;
 var wKeyPressed = false;
 var sKeyPressed = false;
 
-
 var setup = true;
 
 function mainloop() {
-    
+
     if (setup) {
         playerXpos = canvas.width * 0.46;
         playerYpos = canvas.height / 2;
-        
+
         setup = false;
     }
-    
+
     colorRect(0, 0, canvas.width, canvas.height, 'black');
     colorRect(playerXpos, playerYpos, PLAYER_WIDTH, PLAYER_HEIGHT, 'blue');
-    
-    PlayerMove()
+    PlayerMove();
 }
 
 function colorRect(x, y, w, h, c) {
@@ -80,12 +80,9 @@ function keyPressed(evt) {
     }
 }
 
-
 function mouseClick(event) {
     // console.log(event);
-        colorRect(playerXpos, playerYpos, bulletWidth, bulletHeight, 'hotpink');
-        //make a bullet array here it goes in the direction of mouseX and mouseY
-
+    // make a bullet array here it goes in the direction of mouseX and mouseY
 }
 
 function keyReleased(evt) {
