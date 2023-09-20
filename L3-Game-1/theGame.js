@@ -19,9 +19,13 @@ window.addEventListener('mousemove', function (e) { //detects mouse movement
     // console.log(mouseX , mouseY)
 });
 var canvasContext, imageAssets;
-
-var bulletXpos = 0;
-var bulletYpos = 0;
+var mouseX = screenX;
+var mouseY = screenY;
+var bulletArray = [];
+// var bulletXpos = (playerXpos + PLAYER_SIZE) / 2;
+// var bulletYpos = (playerYpos + PLAYER_SIZE) / 2;
+var bulletXpos = mouseX;
+var bulletYpos = mouseY;
 var bulletWidth = 20;
 var bulletHeight = 20;
 var bulletSpeed = 5;
@@ -43,6 +47,7 @@ var dKeyPressed = false;
 var aKeyPressed = false;
 var wKeyPressed = false;
 var sKeyPressed = false;
+var click = false;
 
 var setup = true;
 
@@ -54,16 +59,43 @@ function mainloop() {
 
         setup = false;
     }
+    if (click == true){
+        MakeBullet();
+    }
 
     colorRect(0, 0, canvas.width, canvas.height, 'black');
     colorRect(playerXpos, playerYpos, PLAYER_WIDTH, PLAYER_HEIGHT, 'blue');
     PlayerMove();
+    drawBullet();
 }
 
 function colorRect(x, y, w, h, c) {
     canvasContext.fillStyle = c;
     canvasContext.fillRect(x, y, w, h);
 }
+function MakeBullet(){
+    click = false;
+    var BULLET_SIZE = 35;
+    var bXpos = playerXpos;
+    var bYpos = playerYpos;
+    var bXspeed = 3;
+    var bYspeed = 2;
+    var bullet = {
+        bXpos: bXpos,
+        bYpos: bYpos,
+        BULLET_SIZE: BULLET_SIZE,
+        bXspeed: bXspeed,
+        bYspeed: bYspeed
+    // console.log('cum');
+}
+bulletArray.push(bullet);
+}
+
+function drawBullet() {
+    bulletArray.forEach(function(e, i, array) {
+        colorRect(bulletXpos, bulletYpos, bulletWidth, bulletHeight, 'white');
+    });
+} //End Function
 
 function keyPressed(evt) {
     if (evt.keyCode == D_KEY) {
@@ -81,7 +113,8 @@ function keyPressed(evt) {
 }
 
 function mouseClick(event) {
-    // console.log(event);
+    console.log(event);
+    click = true;
     // make a bullet array here it goes in the direction of mouseX and mouseY
 }
 
