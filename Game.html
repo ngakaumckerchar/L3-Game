@@ -1,155 +1,16 @@
 <!doctype html>
-
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
 <body>
-    <canvas id="gameCanvas" width="1900" height="940"></canvas>
-
-    <script>
-        var canvas, canvasContext, imageAssets;
-
-        window.onload = function () {
-            canvas = document.getElementById('gameCanvas');
-            canvasContext = canvas.getContext('2d');
-            imageAssets = loadImgAssets();
-
-            document.body.style.background = 'black';
-            document.addEventListener('keydown', keyPressed);
-            document.addEventListener('keyup', keyReleased);
-
-            setInterval(mainloop, 1000 / 50);
+    <style>
+        canvas {
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
         }
-
-        var playerXsource = '';
-        var playerYsource = '';
-        var playerXpos = '';
-        var playerYpos = '';
-        var playerXspeed = 10;
-        var playerYspeed = 10;
-        var PLAYER_SIZE = 100;
-        const PLAYER_WIDTH = 110;
-        const PLAYER_HEIGHT = 150;
-
-        const D_KEY = 68;
-        const A_KEY = 65;
-        const W_KEY = 87;
-        const S_KEY = 83;
-
-        var dKeyPressed = false;
-        var aKeyPressed = false;
-        var wKeyPressed = false;
-        var sKeyPressed = false;
-
-        var gameRun = true;
-
-        var setup = true;
-
-        function mainloop() {
-            if (gameRun) {
-
-                if (setup) {
-                    playerXpos = canvas.width * 0.46;
-                    playerYpos = canvas.height / 2;
-
-                    setup = false;
-                }
-
-                colorRect(0, 0, canvas.width, canvas.height, 'grey');
-                drawSprite(imageAssets.player, playerXsource, playerYsource, 16, 21, playerXpos,
-                    playerYpos, PLAYER_WIDTH, PLAYER_HEIGHT);
-
-                PlayerMove()
-                spriteMove()
-
-            }
-        }
-
-        function loadImgAssets() {
-            imgs = {};
-
-            imgs.player = new Image();
-            imgs.player.src = "images/player.png";
-
-            return imgs;
-        }
-
-        function spriteMove() {
-
-            if (wKeyPressed) {
-                playerYsource = 22;
-            }
-            if (sKeyPressed) {
-                playerYsource = 0;
-            }
-            if (aKeyPressed) {
-                playerYsource = 44;
-            }
-            if (dKeyPressed) {
-                playerYsource = 66;
-            }
-        }
-
-        function colorRect(x, y, w, h, c) { // establishes position variables for drawing objects
-            canvasContext.fillStyle = c;
-            canvasContext.fillRect(x, y, w, h);
-        }
-
-        function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
-            canvasContext.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
-        }
-
-        function drawImg(src, x, y, w, h) {
-            canvasContext.drawImage(src, x, y, w, h)
-        }
-
-        function keyPressed(evt) {
-            if (evt.keyCode == D_KEY) {
-                dKeyPressed = true;
-            }
-            if (evt.keyCode == A_KEY) {
-                aKeyPressed = true;
-            }
-            if (evt.keyCode == W_KEY) {
-                wKeyPressed = true;
-            }
-            if (evt.keyCode == S_KEY) {
-                sKeyPressed = true;
-            }
-
-        }
-
-        function keyReleased(evt) {
-            if (evt.keyCode == D_KEY) {
-                dKeyPressed = false;
-            }
-            if (evt.keyCode == A_KEY) {
-                aKeyPressed = false;
-            }
-            if (evt.keyCode == W_KEY) {
-                wKeyPressed = false;
-            }
-            if (evt.keyCode == S_KEY) {
-                sKeyPressed = false;
-            }
-
-        }
-
-        function PlayerMove() {
-
-            if (dKeyPressed && playerXpos < canvas.width * 0.94) {
-                playerXpos += playerXspeed;
-            }
-            if (aKeyPressed && playerXpos > canvas.width * 0.001) {
-                playerXpos -= playerXspeed;
-            }
-            if (wKeyPressed && playerYpos > canvas.height * 0.001) {
-                playerYpos -= playerYspeed;
-            }
-            if (sKeyPressed && playerYpos < canvas.height * 0.80) {
-                playerYpos += playerYspeed;
-            }
-
-
-
-        }
-    </script>
-
+    </style>
+    <script src="theGame.js"></script> 
+    <canvas id="canvas" width="1900" height="940"></canvas>
 </body>
+</html>
